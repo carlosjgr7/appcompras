@@ -28,11 +28,31 @@ namespace AppCompras.Ui.ViewModels
             Navigation = navigation;
             getAndPaint(leftsite, rightsite);
             callShow();
-            MessagingCenter.Subscribe<DetailPageViewModel>(this, "update", (sender) =>
-            {
-                callShow();
-            });
+            MessaginCenterSuscribe();
 
+        }
+
+        public void MessaginCenterSuscribe()
+        {
+            MessagingCenter.Subscribe<DetailPageViewModel, Detallecompras>(this, "update", async (sender,item) =>
+            {
+                PreSealeds.Add(new ViewProductPreSealed()
+                {
+                    Url = await new getProducts().getProductsImageById(item.Idproducto),
+                    Idproduct = item.Idproducto,
+                    Cantidad = item.Cantidad,
+                    Total = item.Total,
+                    
+                    Description = await new getProducts().getProductsDescriptionById(item.Idproducto)
+                });
+                Total += float.Parse(item.Total);
+            
+            Cant = PreSealeds.Count;
+        });
+        }
+        public async void callShow()
+        {
+            await ShowPreviusView();
         }
 
 
@@ -59,6 +79,7 @@ namespace AppCompras.Ui.ViewModels
             await ShowProducts(leftsite, rightsite);
 
         }
+
 
         public async Task ShowProducts(StackLayout leftsite, StackLayout rightsite)
         {
@@ -150,10 +171,7 @@ namespace AppCompras.Ui.ViewModels
 
         }
 
-        public async void callShow()
-        {
-            await ShowPreviusView();
-        }
+      
 
 
         public async Task ShowPreviusView()

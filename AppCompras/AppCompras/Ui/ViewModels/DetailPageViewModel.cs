@@ -45,17 +45,20 @@ namespace AppCompras.Ui.ViewModels
 
         public Command AggCompra => new Command(async () =>
         {
+
             crudDetalleCompra funcion = new crudDetalleCompra();
             if (Cant == 0) Cant = 1;
-            await funcion.InsertDC(new Detallecompras()
+
+            var detalle = new Detallecompras()
             {
                 Total = Precio.ToString(),
                 Cantidad = Cant.ToString(),
                 Idproducto = Product.Idproducto,
                 Preciocompra = Product.Precio
+            };
+            await funcion.InsertDC(detalle);
 
-            });
-            MessagingCenter.Send(this, "update");
+            MessagingCenter.Send(this, "update",detalle);
             await Navigation.PopAsync();
         });
 

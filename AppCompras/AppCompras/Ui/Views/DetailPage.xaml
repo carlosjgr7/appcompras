@@ -68,7 +68,7 @@
                     </Label>
                 </StackLayout>
             </Frame>
-            <Label Text="{Binding Precio}"
+            <Label Text="{Binding Precio,StringFormat='$ {0:F}'}"
                    VerticalOptions="Center"
                    FontAttributes="Bold"
                    TextColor="Black"
