@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="AppCompras.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout BackgroundColor="black">
+        <Grid RowDefinitions="*,100"
+              VerticalOptions="FillAndExpand"
+              x:Name="gridproducts"
+              IsVisible="{Binding ViewPrincipal}"
+             >
+            <pancake:PancakeView
+                CornerRadius="0,0,40,40"
+                BackgroundColor="#EFEFEC">
+                <ScrollView>
+                    <Grid ColumnDefinitions="*,*"
+                          Margin="8,0,8,0"
+                          RowDefinitions="80,*"
+                          >
+                        <StackLayout Orientation="Horizontal" Margin="8,0,8,0"
+                                 Grid.ColumnSpan="2">
+                            <Image Source="backarrow.png"
+                                   Margin="10,0,0,0"
+                                   HeightRequest="40"
+                                   />
+                            <Label Text="Frutas y vegetales"
+                                       TextColor="#3D3D3D"
+                                       FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"
+                                       />
+                            <Image Source="ecualizador.png"
+                                   HeightRequest="30"
+                                   HorizontalOptions="EndAndExpand"
+                                   Margin="0,0,10,0"
+                       />
+                        </StackLayout>
+                        <StackLayout x:Name="left"
+                                     Grid.Column="0" Grid.Row="1"
+                                     >
+
+                        </StackLayout>
+                        <StackLayout x:Name="right"
+                                     Grid.Column="1"
+                                     Grid.Row="1"
+                                     >
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+            </pancake:PancakeView>
+            <!--#region PreSales-->
+            <StackLayout Grid.Row="1" BackgroundColor="black"
+                         Margin="12,0,10,0"
+                         Orientation="Horizontal"
+                         x:Name="PanelContador">
+                <Label Text="Cart"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="30"
+                       VerticalOptions="Center"
+                       WidthRequest="100"
+                       />
+                <CollectionView HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                ItemsSource="{Binding PreSealeds}"
+                                >
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal"
+                                         Span="1"
+                                         HorizontalItemSpacing="6"/>
+
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="4,0"
+                                 WidthRequest="28">
+                                <Frame CornerRadius="19"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                      >
+                                </Frame>
+                                <Image Source="{Binding Url}"
+                                      Margin="0,6"
+                                      WidthRequest="30"
+                                      HorizontalOptions="Center"
+                                     />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Grid Margin="0,0,5,0">
+                    <Frame 
+                            WidthRequest="25"
+                            VerticalOptions="Center"
+                            CornerRadius="19"
+                            Background="#FABC4B"
+                            />
+
+                    <Label Text="{Binding Cant}"
+                       TextColor="black"
+                       FontAttributes="Bold"
+                       FontSize="22"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                </Grid>
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Command="{Binding ChangeViewUp}"
+                                            Direction="Up"
+                                            />
+
+                </StackLayout.GestureRecognizers>
+
+
+            </StackLayout>
+            <!--#endregion-->
+        </Grid>
+        <!--#region paneldetallecompra-->
+        <StackLayout x:Name="Paneldetallecompra"
+                     Margin="20"
+                     VerticalOptions="FillAndExpand"
+                     IsVisible="{Binding ViewDetail}"
+                     >
+            <Label Text="Cart"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="30"
+                       VerticalOptions="Center"
+                       WidthRequest="100"
+                       HeightRequest="120"
+                       Margin="20"
+                       >
+                <Label.GestureRecognizers>
+                    <SwipeGestureRecognizer Command="{Binding ChangeViewDown}"
+                                            Direction="Down"
+                                            />
+                </Label.GestureRecognizers>
+
+            </Label>
+            <CollectionView HeightRequest="250"
+                            VerticalOptions="Center"
+                            ItemsSource="{Binding PreSealeds}"
+                            >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                         Span="1"
+                                         VerticalItemSpacing="6"/>
+
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame WidthRequest="60"
+                                       HeightRequest="60"
+                                       CornerRadius="30"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       Padding="0"
+                                      >
+                                        <Image Source="{Binding Url}"
+                                      HeightRequest="70"
+                                      HorizontalOptions="Center"
+                                     />
+                                    </Frame>
+                                    <Label Text="{Binding Cantidad}"
+                                           TextColor="white"
+                                           VerticalOptions="Center"
+                                           Margin="20,0"/>
+                                    <Label Text="{Binding Description}"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           FontSize="18"/>
+                                    <Label Text="{Binding Total,StringFormat='$ {0:F}'}"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="EndAndExpand"
+                                           />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,40,0,0"
+                         >
+                <Frame HeightRequest="40"
+                   WidthRequest="40"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Start"
+                   CornerRadius="25"
+                   Padding="6"
+                   BackgroundColor="DarkGray">
+                    <Image Source="camion.png"
+                   />
+                </Frame>
+                <StackLayout HeightRequest="40"
+                             WidthRequest="200"
+                             Margin="15,0"
+
+                             >
+                    <Label Text="Delivery"
+                           TextColor="white"
+                           />
+                    <Label Text="Todos los deliverys a 2km del negocio cuestan 10$"
+                           TextColor="#CCC"
+                           />
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="$10"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#CCCC"
+                       />
+                    <Switch IsToggled="{Binding Delivery}"
+                            />
+                </StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Command="{Binding ChangeViewDown}"
+                                            Direction="Down"
+                                            />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand"
+                         >
+                <Label Text="Total:"
+                       VerticalOptions="Center"
+                       FontSize="25"
+                       TextColor="#CCC"/>
+                <Label Text="{Binding Total,StringFormat='$ {0:F}'}"
+
+                       HorizontalOptions="EndAndExpand"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="35"
+                       TextColor="white"
+                       />
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Command="{Binding ChangeViewDown}"
+                                            Direction="Down"
+                                            />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <Button Text="Next"
+                    BackgroundColor="#FABC4B"
+                    CornerRadius="30"
+                    HeightRequest="60"
+                    VerticalOptions="EndAndExpand"
+                    />
+
+        </StackLayout>
+        <!--#endregion-->
+
+
+
+    </StackLayout>
+</ContentPage>
+

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="AppCompras.Ui.Views.DetailPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True"
+    NavigationPage.HasNavigationBar="False">
+
+    <StackLayout Padding="25,15,25,30" BackgroundColor="White">
+        <Image Source="backarrow.png"
+                   HeightRequest="40"
+                   HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Source="{Binding Product.Icono}"
+                   HeightRequest="300"
+                   
+                   />
+        <Label Text="{Binding Product.Descripcion}"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="28"
+                   CharacterSpacing="1"
+                   />
+        <Label Text="{Binding Product.Peso}"
+                   TextColor="#cdcdcd"
+                   FontSize="18"
+                   Margin="0,0,0,8"/>
+        <StackLayout Orientation="Horizontal" >
+            <Frame Padding="0"
+                       BackgroundColor="#cdcdcd"
+                       CornerRadius="20"
+                       HasShadow="False"
+                       HeightRequest="40"
+                       VerticalOptions="Center"
+                       WidthRequest="100"
+                      >
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="-"
+                       FontSize="36"
+                       TextColor="black"
+                       Margin="16,-6,0,0"
+                       VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Minnus}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="{Binding Cant}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                           />
+                    <Label Text="+"
+                       FontSize="25"
+                       TextColor="black"
+                       Margin="0,-4,16,0"
+                       VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Pluss}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+            <Label Text="{Binding Precio}"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="36"
+                   HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+        <Label Text="Descripcion"
+               FontAttributes="Bold"
+               FontSize="Subtitle"
+               TextColor="Black"
+               CharacterSpacing="1"/>
+        <ScrollView HeightRequest="130">
+            <Label TextColor="Black" Text="Gameplay has now been shown for each playable character in Gotham Knights' Bat Family. Batgirl and Red Hood have yet to receive their own individual Gotham Knights character spotlights, but until those are shared, fans can still look back at the two gameplay walkthroughs presented to see what their traversal and combat looks like.
+
+Many fans were unhappy with how unpolished Gotham Knights looked in its gameplay walkthrough for Nightwing and Red Hood, particularly because it is now a next-gen exclusive game and others before it have arguably looked better. However, Robin's character spotlight turned heads and proved that Gotham Knights may be up to standard upon release. For now, fans have shared which characters they plan to play as most when Gotham Knights releases in October."
+              />
+        </ScrollView>
+        <StackLayout Orientation="Horizontal"  VerticalOptions="EndAndExpand">
+            <ImageButton Source="like.png"
+                         HeightRequest="60"
+                         CornerRadius="30"
+                         Padding="10"
+                         BackgroundColor="#DDDD"
+                         VerticalOptions="End"
+                         />
+            <Button Text="Agregar al carrito"
+                    BackgroundColor="#FEBB44"
+                    Command="{Binding AggCompra}"
+                    CornerRadius="30"
+                    Padding="40,0"
+                    HorizontalOptions="EndAndExpand"
+                   />
+
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
+

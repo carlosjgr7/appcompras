@@ -13,5 +13,39 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Xamanimation" Version="1.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="View\" />
+    <None Remove="Models\" />
+    <None Remove="Ui\" />
+    <None Remove="Ui\ViewModels\" />
+    <None Remove="Ui\Views\" />
+    <None Remove="PropertyChanged.Fody" />
+    <None Remove="Data\" />
+    <None Remove="Data\Local\" />
+    <None Remove="Data\Network\" />
+    <None Remove="Data\Network\Interfaces\" />
+    <None Remove="Data\Network\Conexions\" />
+    <None Remove="FirebaseDatabase.net" />
+    <None Remove="Data\Network\Callers\" />
+    <None Remove="Xamarin.Forms.PancakeView" />
+    <None Remove="Xamarin.Plugin.SharedTransitions" />
+    <None Remove="Xamanimation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Ui\" />
+    <Folder Include="Ui\ViewModels\" />
+    <Folder Include="Ui\Views\" />
+    <Folder Include="Data\" />
+    <Folder Include="Data\Local\" />
+    <Folder Include="Data\Network\" />
+    <Folder Include="Data\Network\Interfaces\" />
+    <Folder Include="Data\Network\Conexions\" />
+    <Folder Include="Data\Network\Callers\" />
   </ItemGroup>
 </Project>
